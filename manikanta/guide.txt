@@ -1,9 +1,23 @@
 19 - 12 - 2022
 
-GIT Install
-Small Changes Tesyting
-Jquery Form Validations
-Jquery Loops  Arrays Strings
-json
-rest
-validation
+Fields 
+First name  - textbox - required
+Last name- textbox - required
+Email id - textbox - required
+mobile code - selectbox - required
+mobile number - textbox - required
+want to share education details yes or no radiobox
+
+submit button
+
+if share education Yes - 
+open a block with details
+
+College Name - required (YES)
+Start Year - required (YES)
+End YearCouse Name - required (YES)
+
+if share education No - 
+open a block with details
+
+Present education Details - textarea - required (NO)
