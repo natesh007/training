@@ -2,4 +2,4 @@
 
 GIT Install
 Jquery Form Validations
-Jquery Loops  Arrays Strings and other things
+Jquery Loops  Arrays Strings and other things.
