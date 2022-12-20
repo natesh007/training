@@ -35,6 +35,7 @@ $("#myForm").validate({
         },
         mobilenum:{
             required:true,
+            minlength:10,
             digits:true,
         },
         details:"required",
@@ -98,6 +99,26 @@ $("#myForm").validate({
                         }
             }
         },
+        coursename:{
+            required : function(element)
+            {
+                if($('input[name="details"]:checked').val() == 'Yes')
+                {
+                    if($('#coursename').val() == '')
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                        {
+                            return false;
+                        }
+            }
+        },
         textarea:{
             required : function(element)
             {
@@ -134,11 +155,13 @@ $("#myForm").validate({
         },
         mobilenum:{
             required:"Please Enter your Mobile number",
+            minlength:"Please Enter 10 digit Mobile number",
             digits:"Enter valid Mobile Number",
         },
         clgname:"Please Enter your College Name",
         startyear:"Please Enter your Start Year",
         endyear:"Please Enter your End Year",
+        coursename:"Please Enter your Course Name",
         textarea:"Please Enter your Present education Details",
     },
     errorPlacement:
