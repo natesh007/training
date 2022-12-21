@@ -109,23 +109,7 @@ $('#myform').validate({
                 }
             }
         },
-        mytext : {
-            required :(function(){
-                
-              
-              var addlist_button = $('input[name=addlist]');
-                addlist_button.on('click', function(event){
-                  
-                  var skill_name = $('input[name=mytext]').val();
-                  if(skill_name == ""){
-                    $('.show_hide').hide();;
-                  }
-                  else{
-                    $('.show_hide').show();
-                  }
-                });
-              })()
-        }
+        
     },
     messages: {
         fName: {
@@ -172,6 +156,36 @@ $('#myform').validate({
             }
         }
 });
+
+
+function Addmore(num)
+{
+    $('.error').remove();
+    var str = num;
+    var res = str.replace(/\D/g, "");
+    var value = $('#mytext_'+res).val();
+    if(value != '')
+    {
+        $('#add_btn_'+res).remove();
+        var newnumber = Number(res)+Number(1);
+        $('#SkillCount').val(newnumber);
+        var newitem = '<div class="d-flex" id="Skill_div_'+newnumber+'"><input type="text" name="mytext_'+newnumber+'" id="mytext_'+newnumber+'" placeholder="Add skills" class="form-control"><button type="button" class="btn btn-danger" id="remove_btn_'+newnumber+'" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary" id="add_btn_'+newnumber+'" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'+newnumber+'" name="mytext_status_'+newnumber+'" value="1"></div>';
+        $(newitem).insertAfter('#Skill_div_'+res);
+    }
+    else
+    {
+        $('<label class="error">Please fill the field</label>').insertAfter('#Skill_div_'+res);
+    }
+}
+function Remove(num)
+{
+    $('.error').remove();
+    var str = num;
+    var res = str.replace(/\D/g, "");
+    $('#mytext_status_'+res).val('0');
+    $('#Skill_div_'+res).addClass('d-none');
+    $('#Skill_div_'+res).removeClass('d-flex');
+}
 // Add more
 // $(function() {
 //     $("#addMore").click(function(e) {
