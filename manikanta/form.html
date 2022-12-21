@@ -8,54 +8,107 @@
     <!-- bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- jquery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <!--  -->
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+
 </head>
 <body>
     <!-- form -->
     <div class="container mt-3">
-        <form>
+        <form id="myform">
             <div class="mb-3">
                 <label for="exampleInputfName" class="form-label">First Name:</label>
-                <input type="text" class="form-control" id="exampleInputfName" aria-describedby="emailHelp" placeholder="Enter First Name">
+                <input type="text" class="form-control" id="exampleInputfName" name="fName" aria-describedby="emailHelp" placeholder="Enter First Name">
               </div>
               <div class="mb-3">
                 <label for="exampleInputlName" class="form-label">Last Name:</label>
-                <input type="text" class="form-control" id="exampleInputlName" aria-describedby="emailHelp"placeholder="Enter Last Name">
+                <input type="text" class="form-control" id="exampleInputlName" name="lName" aria-describedby="emailHelp"placeholder="Enter Last Name">
               </div>
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email id</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"placeholder="Enter Email id">
+              <input type="email" class="form-control" id="exampleInputEmail1" name="email"  aria-describedby="emailHelp"placeholder="Enter Email id">
             </div>
-            <div class="dropdown">
-                <a class="btn  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: 1px solid black;">
-                 Mobile code
-                </a>
-              
-                <ul class="dropdown-menu mb-3">
-                  <li><a class="dropdown-item" href="#">+91</a></li>
-                  <li><a class="dropdown-item" href="#">+81</a></li>
-                  <li><a class="dropdown-item" href="#">+99  </a></li>
-                </ul>
-              </div>
+            <p>Mobile code</p>
+            <select class="form-select" aria-label="Default select example">    
+                <option selected>+91</option>
+                <option value="1">+61</option>
+                <option value="2">+81</option>
+                <option value="3">+71</option>
+              </select>
 
               <div class="mb-3">
                 <label for="exampleInputmobile" class="form-label">Mobile Number :</label>
-                <input type="tel" class="form-control" id="exampleInputmobile"placeholder="Enter Mobile Number">
+                <input type="tel" class="form-control" id="exampleInputmobile" placeholder="Enter Mobile Number" name="mobile">
               </div>
+      
+              <!--  -->
+            <!-- <div class="input-group mt-3">
+                <div class="dropdown">
+                    <a class="btn  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Mobile code
+                    </a>
+                    <ul class="dropdown-menu mb-3">
+                      <li><a class="dropdown-item" href="#">+91</a></li>
+                      <li><a class="dropdown-item" href="#">+81</a></li>
+                      <li><a class="dropdown-item" href="#">+99  </a></li>
+                    </ul>
+                  </div>
+                  
+                  <input type="tel" class="form-control" id="exampleInputmobile" placeholder="Enter Mobile Number" name="mobile">              
+                </div> -->
 
-              <div>want to share education details yes or no</div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                <label class="form-check-label" for="inlineRadio1">Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                <label class="form-check-label" for="inlineRadio2">No</label>
-              </div>
-
+              <div class="mt-2">want to share education details yes or no</div>
+             <div class="mt-2" id="radio-div">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="yes" onchange="showdetails(this)">
+                    <label class="form-check-label" for="inlineRadio1">Yes</label> 
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="no" onchange="showdetails(this)">
+                    <label class="form-check-label" for="inlineRadio2">No</label>
+                  </div>
+             </div>
+              <!-- click yes -->
+              <div style="display: none;" id="show-form">
+                <div class="mb-3">
+                    <label for="colName" class="form-label">College Name:</label>
+                    <input type="text" class="form-control" id="colName" aria-describedby="emailHelp" placeholder="Enter College Name" name="colName" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputstartyear" class="form-label">Start Year:</label>
+                    <input type="number" min="1990" max="2022" class="form-control" id="exampleInputstartyear" aria-describedby="emailHelp" placeholder="Enter Start Year" name="styear" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputendyear" class="form-label">End Year:</label>
+                    <input type="year" class="form-control" id="exampleInputendyear" aria-describedby="emailHelp" placeholder="Enter End Year" name="endyear" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputcourseName" class="form-label">Course Name:</label>
+                    <input type="text" class="form-control" id="exampleInputcourseName" aria-describedby="emailHelp" placeholder="Enter Course Name" name="course" >
+                  </div>
+            </div>
+              <!-- click no -->
+              <div style="display: none;" id="show-education">
+                <p>Present Education Details</p>
+                <textarea class="d-block" name="textarea" id="textarea" cols="80" rows="10"></textarea>
+            </div>
+            <!--  -->
+            
+            
               <div class="mt-2">
                 <button type="submit" class="btn btn-primary">Submit Form</button>
               </div>
+             
+              
           </form>
     </div>
+    <script src="../manikanta/form.js"></script>
 </body>
 </html>
