@@ -35,7 +35,6 @@ $("#myForm").validate({
         },
         mobilenum:{
             required:true,
-            minlength:10,
             digits:true,
         },
         details:"required",
@@ -155,7 +154,6 @@ $("#myForm").validate({
         },
         mobilenum:{
             required:"Please Enter your Mobile number",
-            minlength:"Please Enter 10 digit Mobile number",
             digits:"Enter valid Mobile Number",
         },
         clgname:"Please Enter your College Name",

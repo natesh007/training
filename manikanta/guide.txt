@@ -1,5 +1,10 @@
 19 - 12 - 2022
 
+<<<<<<< HEAD
+GIT Install
+Jquery Form Validations
+Jquery Loops  Arrays and Strings
+=======
 Fields 
 First name  - textbox - required
 Last name- textbox - required
@@ -21,3 +26,4 @@ if share education No -
 open a block with details
 
 Present education Details - textarea - required (NO)
+>>>>>>> d79c53e9043fdc12fa8975002bc7d3ee2556b661
