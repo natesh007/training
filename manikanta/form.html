@@ -12,11 +12,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <!--  -->
-    <style>
-        .error {
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="../manikanta/form.css">
 
 </head>
 <body>
@@ -49,20 +45,6 @@
               </div>
       
               <!--  -->
-            <!-- <div class="input-group mt-3">
-                <div class="dropdown">
-                    <a class="btn  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     Mobile code
-                    </a>
-                    <ul class="dropdown-menu mb-3">
-                      <li><a class="dropdown-item" href="#">+91</a></li>
-                      <li><a class="dropdown-item" href="#">+81</a></li>
-                      <li><a class="dropdown-item" href="#">+99  </a></li>
-                    </ul>
-                  </div>
-                  
-                  <input type="tel" class="form-control" id="exampleInputmobile" placeholder="Enter Mobile Number" name="mobile">              
-                </div> -->
 
               <div class="mt-2">want to share education details yes or no</div>
              <div class="mt-2" id="radio-div">
@@ -99,9 +81,17 @@
                 <p>Present Education Details</p>
                 <textarea class="d-block" name="textarea" id="textarea" cols="80" rows="10"></textarea>
             </div>
-            <!--  -->
-            
-            
+            <!--Add more  -->
+            <!-- <div id="fieldList">
+            </div>
+              <button id="addMore">Add more fields</button> -->
+              <div class="input_fields_wrap">
+               <div class="d-flex">
+                <input type="text" name="mytext" id="mytext" placeholder="Add skills">
+                <input type="button" name="addlist" class="add_field_button" value="Add More Fields">
+               </div>
+            </div>
+
               <div class="mt-2">
                 <button type="submit" class="btn btn-primary">Submit Form</button>
               </div>

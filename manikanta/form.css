@@ -1,0 +1,9 @@
+.error {
+    color: red;
+}
+li {
+    list-style-type: none;
+}
+.remove_field {
+    border: 1px solid black;
+}
