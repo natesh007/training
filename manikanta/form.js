@@ -194,6 +194,7 @@ function Remove(num)
         if($('#mytext_status_' + i).val() == '1')
         {
             skills.push(i);
+            console.log(skills.push(i));
         }
     }
     var newvalue = Math.max(...skills);
