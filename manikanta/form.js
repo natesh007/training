@@ -108,29 +108,6 @@ $('#myform').validate({
                     return false;
                 }
             }
-        },
-        mytext_1 : {
-            required :true,
-            lettersonly :true
-        },
-        "mytext[]" :{
-            required : function (element) {
-              /*   var anyFieldIsEmpty = $(".text-field").filter(function() {
-                    return $.trim(this.value).length === 0;
-                }).length > 0;
-        
-            if (anyFieldIsEmpty) {
-                alert("There are empty fields!");
-                // return true;
-            }
-            else {
-                return false
-            } */
-            let array = ele;
-            for(var i=0;i<array.length;i++){
-
-            }
-            }
         }
     },
     messages: {
@@ -162,11 +139,6 @@ $('#myform').validate({
             required: "please enter course",
         },
         textarea: "please enter details",
-        mytext_1 : {
-            required :"please enter your skills",
-            lettersonly :"enter letters only"
-        },
-        "mytext[]" : "please enter your skills"
     },
     errorPlacement:
         function (error, element) {
@@ -177,9 +149,31 @@ $('#myform').validate({
             else {
                 error.insertAfter(element);
             }
+        },
+    submitHandler:function(form){
+        var newfnction = newcheck();
+        if(newfnction != 1)
+        {
+            alert('submit');
         }
+    }
 });
 
+function newcheck()
+{
+    $('.errors').remove();
+    var word = 0;
+    var count = $('#SkillCount').val();
+    for(let i =1; i <= count; i++ )
+    {
+        if($('#mytext_'+i).val() == '' && $('#mytext_status_'+i).val() == '1')
+        {
+            $('<label class="errors">please fill the field</label>').insertAfter('#Skill_div_'+i);
+            word = 1;
+        }
+    }
+    return word;
+}
 
 function Addmore(num)
 {
