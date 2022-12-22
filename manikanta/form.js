@@ -109,7 +109,29 @@ $('#myform').validate({
                 }
             }
         },
+        mytext_1 : {
+            required :true,
+            lettersonly :true
+        },
+        "mytext[]" :{
+            required : function (element) {
+              /*   var anyFieldIsEmpty = $(".text-field").filter(function() {
+                    return $.trim(this.value).length === 0;
+                }).length > 0;
         
+            if (anyFieldIsEmpty) {
+                alert("There are empty fields!");
+                // return true;
+            }
+            else {
+                return false
+            } */
+            let array = ele;
+            for(var i=0;i<array.length;i++){
+
+            }
+            }
+        }
     },
     messages: {
         fName: {
@@ -140,10 +162,11 @@ $('#myform').validate({
             required: "please enter course",
         },
         textarea: "please enter details",
-        mytext : {
-            required : "please enter your skills",
-           
-        }
+        mytext_1 : {
+            required :"please enter your skills",
+            lettersonly :"enter letters only"
+        },
+        "mytext[]" : "please enter your skills"
     },
     errorPlacement:
         function (error, element) {
@@ -170,8 +193,9 @@ function Addmore(num)
         $('#add_btn_'+res).remove();
         var newnumber = Number($('#SkillCount').val())+Number(1);
         $('#SkillCount').val(newnumber);
-        var newitem = '<div class="d-flex" id="Skill_div_'+newnumber+'"><input type="text" name="mytext_[]" id="mytext_'+newnumber+'" placeholder="Add skills" class="form-control"><button type="button" class="btn btn-danger" id="remove_btn_'+newnumber+'" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary add" id="add_btn_'+newnumber+'" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'+newnumber+'" name="mytext_status_'+newnumber+'" value="1"></div>';
+        var newitem = '<div class="d-flex" id="Skill_div_'+newnumber+'"><input type="text" name="mytext[]" id="mytext_'+newnumber+'" placeholder="Add skills" class="form-control text-field"><button type="button" class="btn btn-danger" id="remove_btn_'+newnumber+'" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary add" id="add_btn_'+newnumber+'" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'+newnumber+'" name="mytext_status_'+newnumber+'" value="1"></div>';
         $(newitem).insertAfter('#Skill_div_'+res);
+        
     }
     else
     {
