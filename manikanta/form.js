@@ -164,6 +164,7 @@ function Addmore(num)
     var str = num;
     var res = str.replace(/\D/g, "");
     var value = $('#mytext_'+res).val();
+    //  console.log(value);
     if(value != '')
     {
         $('#add_btn_'+res).remove();
@@ -186,17 +187,8 @@ function Remove(num)
     $('#Skill_div_'+res).addClass('d-none');
     $('#Skill_div_'+res).removeClass('d-flex');
 }
-// Add more
-// $(function() {
-//     $("#addMore").click(function(e) {
-//       e.preventDefault();
-//       $("#fieldList").append("<div>&nbsp;</div>");
-//       $("#fieldList").append("<input type='text' name='skills[]' placeholder='skills' />");
-//     //   $("#fieldList").append("<li><input type='text' name='skills[]' placeholder='skills' /></li>");
-//     //   $("#fieldList").append("<li><input type='text' name='skills[]' placeholder='skills' /></li>");
-//     });
-//   });
-$(document).ready(function () {
+
+/* $(document).ready(function () {
     var max_fields = 10; //maximum input boxes allowed
     var wrapper = $(".input_fields_wrap"); //Fields wrapper
     var add_button = $(".add_field_button"); //Add button ID
@@ -213,4 +205,4 @@ $(document).ready(function () {
     $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
-});
+}); */
