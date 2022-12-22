@@ -138,6 +138,28 @@ $("#myForm").validate({
                         }
             }
         },
+        /* skills:{
+            required : function(element){
+                if($("#skills").val() == '')
+                {
+                  return true;
+                }
+                else
+                {
+                    $(".add_button").click(function(e){
+                        e.preventDefault();
+                        $("#field_wrapper").append('<div class="d-flex"><div class="col-11"><label for="skills">Skills</label><input type="text" class="form-control" name="skills[]" id="skills" placeholder="Enter Your Skills"/></div><div class="col-1"><button type="button" class="mt-4 btn btn-danger remove_button">Remove</button></div></div>');
+                    });
+                
+                    $(document).on("click",".remove_button", function(e){
+                        e.preventDefault();
+                        let flex_item = $(this).parent().parent();
+                        $(flex_item).remove();
+                    });
+                   return false;
+                }
+            }
+        }, */
     },
     messages:{
         firstname:{
@@ -161,6 +183,7 @@ $("#myForm").validate({
         endyear:"Please Enter your End Year",
         coursename:"Please Enter your Course Name",
         textarea:"Please Enter your Present education Details",
+        skills:"Please Enter your skills",
     },
     errorPlacement:
         function( error, element ){
@@ -196,3 +219,17 @@ $('input[name="details"]').click(function(){
     $('#yesblock').hide();
     $('#noblock').hide();
   });
+  $(document).ready(function(){
+    $(".add_button").click(function(e){
+        e.preventDefault();
+        $("#field_wrapper").append('<div class="d-flex" id="field_wrapper"><input type="text" class="form-control" name="skills[]" id="skills" placeholder="Enter Your Skills"/><button type="button" class="btn btn-danger remove_button">Remove</button></div>');
+    });
+
+    $(document).on("click",".remove_button", function(e){
+        e.preventDefault();
+        let flex_item = $(this).parent().parent();
+        $(flex_item).remove();
+    });
+  });
+
+  
