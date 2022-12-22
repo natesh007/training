@@ -180,10 +180,10 @@ function Addmore(num)
 }
 function Remove(num)
 {
-    // $('.error').remove();
+    $('.error').remove();
     var str = num;
     var res = str.replace(/\D/g, "");
-    // $('.add').remove();
+    $('.add').remove();
     var countnumber = $('#SkillCount').val();
     const skills = [];
     

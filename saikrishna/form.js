@@ -14,13 +14,6 @@ function showdetails(radiovalue) {
 
 
 
-
-
-
-
-
-
-
 jQuery.validator.addMethod("alphabetsonly", function (value, element) {
 
     return this.optional(element) || /^[a-z\s]+$/i.test(value);
@@ -175,56 +168,6 @@ $().ready(function () {
 
 
 
-
-
-
-
-//remove button
-
-// $(document).ready(function () {
-//     $("#add-more-button").click(function () {
-//         $("#skills-container").append('<div class="form-group "><div><label for="skills">Skills</label>  <input type="text" class="form-control" id="skills" name="skills"><button class="btn btn-danger remove-button">REMOVE SKILLS</button></div></div>');
-//     });
-
-//     $("#skills-container").on("click", ".remove-button", function () {
-//         $(this).parent().remove();
-//     });
-// });
-
-function Remove(num)
-{
-    $('.error').remove();
-    var str = num;
-    var res = str.replace(/\D/g, "");
-    $('.add').remove();
-    var countnumber = $('#SkillCount').val();
-    const skills = [];
-    
-    $('#mytext_status_'+res).val('0');
-    $('#Skill_div_'+res).addClass('d-none');
-    $('#Skill_div_'+res).removeClass('d-flex');
-    for(let i = 1; i <= countnumber; i++)
-    {
-        if($('#mytext_status_' + i).val() == '1')
-        {
-            skills.push(i);
-        }
-    }
-    var newvalue = Math.max(...skills);
-    if(newvalue == 1)
-    {
-        $('#Skill_div_'+newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_1" onclick="Addmore(this.id)">Add more</button>');
-    }
-    else
-    {
-        $('#Skill_div_'+newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_'+countnumber+'" onclick="Addmore(this.id)">Add more</button>');
-    }
-   
-    
-}
-
-
-
 $(document).ready(function () {
     var max_fields = 10; //maximum input boxes allowed
     var wrapper = $(".input_fields_wrap"); //Fields wrapper
@@ -245,12 +188,14 @@ $(document).ready(function () {
 });
 
 
+
 function Addmore(num)
 {
     $('.error').remove();
     var str = num;
     var res = str.replace(/\D/g, "");
     var value = $('#mytext_'+res).val();
+    //  console.log(value);
     if(value != '')
     {
         $('#add_btn_'+res).remove();
@@ -264,8 +209,6 @@ function Addmore(num)
         $('<label class="error">Please fill the field</label>').insertAfter('#Skill_div_'+res);
     }
 }
-
-
 function Remove(num)
 {
     $('.error').remove();
@@ -295,7 +238,7 @@ function Remove(num)
         $('#Skill_div_'+newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_'+countnumber+'" onclick="Addmore(this.id)">Add more</button>');
     }
 
-    if($('#mytext_'+res).val() != '')
+    if($('#mytext_'+res).val() == '')
     {
         $('#mytext_'+res).val('0'); 
     }
