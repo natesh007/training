@@ -168,9 +168,9 @@ function Addmore(num)
     if(value != '')
     {
         $('#add_btn_'+res).remove();
-        var newnumber = Number(res)+Number(1);
+        var newnumber = Number($('#SkillCount').val())+Number(1);
         $('#SkillCount').val(newnumber);
-        var newitem = '<div class="d-flex" id="Skill_div_'+newnumber+'"><input type="text" name="mytext_'+newnumber+'" id="mytext_'+newnumber+'" placeholder="Add skills" class="form-control"><button type="button" class="btn btn-danger" id="remove_btn_'+newnumber+'" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary" id="add_btn_'+newnumber+'" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'+newnumber+'" name="mytext_status_'+newnumber+'" value="1"></div>';
+        var newitem = '<div class="d-flex" id="Skill_div_'+newnumber+'"><input type="text" name="mytext_'+newnumber+'" id="mytext_'+newnumber+'" placeholder="Add skills" class="form-control"><button type="button" class="btn btn-danger" id="remove_btn_'+newnumber+'" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary add" id="add_btn_'+newnumber+'" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'+newnumber+'" name="mytext_status_'+newnumber+'" value="1"></div>';
         $(newitem).insertAfter('#Skill_div_'+res);
     }
     else
@@ -183,9 +183,31 @@ function Remove(num)
     $('.error').remove();
     var str = num;
     var res = str.replace(/\D/g, "");
+    $('.add').remove();
+    var countnumber = $('#SkillCount').val();
+    const skills = [];
+    
     $('#mytext_status_'+res).val('0');
     $('#Skill_div_'+res).addClass('d-none');
     $('#Skill_div_'+res).removeClass('d-flex');
+    for(let i = 1; i <= countnumber; i++)
+    {
+        if($('#mytext_status_' + i).val() == '1')
+        {
+            skills.push(i);
+        }
+    }
+    var newvalue = Math.max(...skills);
+    if(newvalue == 1)
+    {
+        $('#Skill_div_'+newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_1" onclick="Addmore(this.id)">Add more</button>');
+    }
+    else
+    {
+        $('#Skill_div_'+newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_'+countnumber+'" onclick="Addmore(this.id)">Add more</button>');
+    }
+   
+    
 }
 
 /* $(document).ready(function () {
