@@ -30,9 +30,7 @@
 </head>
 
 <body>
-
   <div class="container">
-
     <form id="studentForm" autocomplete="off">
 
       <div class="row mb-4">
@@ -72,8 +70,6 @@
         <div class="col">
           <label class="form-label" for="form6Example5">Mobile number</label>
           <input type="number" name="mobilenumber" class="form-control" placeholder="Enter Mobile Number">
-
-
         </div>
       </div>
       <div>
@@ -92,13 +88,20 @@
           <label class="form-check-label" for="inlineRadio2">No</label>
           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="InlineRadio2" value="no"
             onchange="showdetails(this)">
-
         </div>
-
-
       </div>
+      <!-- <div class="row skill">
+        <div class="col">
+          <input type="text" id="skill" name="skill"> <button type="button" name="add-more-button" id="add-more-button"
+            class="btn btn-light">ADD SKILLS</button>
+        </div>
+      </div> -->
 
 
+
+      
+
+      <div id="skills-container"> </div>
       <!-- on clicking yes -->
       <div class="mt-4" style="display: none; " id="form-show">
 
@@ -130,7 +133,7 @@
 
         <div class="mb-4">
           <label for="CourseName" class="form-label">Course Name</label>
-          <input type="number" name="CourseName" class="form-control" aria-describedby="emailHelp"
+          <input type="text" name="CourseName" class="form-control" aria-describedby="emailHelp"
             placeholder="Enter Course Name" />
 
 
@@ -144,23 +147,23 @@
         <textarea class="ms-2" name="" id="" cols="30" rows="10"></textarea>
 
       </div>
+
+      <div class="input_fields_wrap">
+        <label for="mytext_1" >Skills</label>
+        <div id="Skill_div_1">
+            <input type="text" name="mytext_1" id="mytext_1" placeholder="Add skills" class="form-control">
+            <button type="button" class="btn btn-primary" id="add_btn_1" onclick="Addmore(this.id)">Add More</button>
+            <input type="hidden" id="mytext_status_1" name="mytext_status_1" value="1">
+        </div>
+
+    </div>
+    <input type="hidden" id="SkillCount" name="SkillCount" value="1">
       <div class=" mt-4">
         <button onclick="submit" type="submit" class="btn btn-primary">Submit</button>
       </div>
 
     </form>
   </div>
-
-
-
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
-   -->
-
-
-
-
-
 </body>
 
 </html>
