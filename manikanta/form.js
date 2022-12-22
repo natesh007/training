@@ -206,6 +206,11 @@ function Remove(num)
     {
         $('#Skill_div_'+newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_'+countnumber+'" onclick="Addmore(this.id)">Add more</button>');
     }
+
+    if($('#mytext_'+res).val() != '')
+    {
+        $('#mytext_'+res).val('0'); 
+    }
    
     
 }
