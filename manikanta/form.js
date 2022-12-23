@@ -182,13 +182,22 @@ function Addmore(num)
     var res = str.replace(/\D/g, "");
     var value = $('#mytext_'+res).val();
     //  console.log(value);
+    // limit
+    var max_limit = 3;
+    var limit = $("#SkillCount").val();
+    console.log(limit);
+    
+    // 
     if(value != '')
     {
         $('#add_btn_'+res).remove();
         var newnumber = Number($('#SkillCount').val())+Number(1);
         $('#SkillCount').val(newnumber);
-        var newitem = '<div class="d-flex" id="Skill_div_'+newnumber+'"><input type="text" name="mytext[]" id="mytext_'+newnumber+'" placeholder="Add skills" class="form-control text-field"><button type="button" class="btn btn-danger" id="remove_btn_'+newnumber+'" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary add" id="add_btn_'+newnumber+'" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'+newnumber+'" name="mytext_status_'+newnumber+'" value="1"></div>';
+        if (limit < max_limit) {
+            var newitem = '<div class="d-flex" id="Skill_div_'+newnumber+'"><input type="text" name="mytext[]" id="mytext_'+newnumber+'" placeholder="Add skills" class="form-control text-field"><button type="button" class="btn btn-danger" id="remove_btn_'+newnumber+'" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary add" id="add_btn_'+newnumber+'" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'+newnumber+'" name="mytext_status_'+newnumber+'" value="1"></div>';
         $(newitem).insertAfter('#Skill_div_'+res);
+        }
+        
         
     }
     else
