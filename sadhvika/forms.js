@@ -138,28 +138,17 @@ $("#myForm").validate({
                         }
             }
         },
-        /* skills:{
-            required : function(element){
-                if($("#skills").val() == '')
-                {
-                  return true;
-                }
-                else
-                {
-                    $(".add_button").click(function(e){
-                        e.preventDefault();
-                        $("#field_wrapper").append('<div class="d-flex"><div class="col-11"><label for="skills">Skills</label><input type="text" class="form-control" name="skills[]" id="skills" placeholder="Enter Your Skills"/></div><div class="col-1"><button type="button" class="mt-4 btn btn-danger remove_button">Remove</button></div></div>');
-                    });
-                
-                    $(document).on("click",".remove_button", function(e){
-                        e.preventDefault();
-                        let flex_item = $(this).parent().parent();
-                        $(flex_item).remove();
-                    });
-                   return false;
-                }
+        "mytext[]":{
+            required: function(element)
+            {
+               if($("#mytext_'+newnumber+'").val() == ""){
+                return true;
+               }
+               else{
+                return false;
+               }
             }
-        }, */
+        }
     },
     messages:{
         firstname:{
@@ -197,6 +186,63 @@ $("#myForm").validate({
 });
 
 
+function Addmore(num)
+{
+    $('.error').remove();
+    var str = num;
+    var res = str.replace(/\D/g, "");
+    var value = $('#mytext_'+res).val();
+    //  console.log(value);
+    if(value != '')
+    {
+        $('#add_btn_'+res).remove();
+        var newnumber = Number($('#SkillCount').val())+Number(1);
+        $('#SkillCount').val(newnumber);
+        var newitem = '<div class="d-flex" id="Skill_div_'+newnumber+'"><input type="text" name="mytext[]" id="mytext_'+newnumber+'" placeholder="Add skills" class="form-control"><button type="button" class="btn btn-danger" id="remove_btn_'+newnumber+'" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary add" id="add_btn_'+newnumber+'" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'+newnumber+'" name="mytext_status_'+newnumber+'" value="1"></div>';
+        $(newitem).insertAfter('#Skill_div_'+res);
+    }
+    else
+    {
+        $('<label class="error">Please fill the field</label>').insertAfter('#Skill_div_'+res);
+    }
+}
+
+
+function Remove(num)
+{
+    $('.error').remove();
+    var str = num;
+    var res = str.replace(/\D/g, "");
+    $('.add').remove();
+    var countnumber = $('#SkillCount').val();
+    const skills = [];
+    
+    $('#mytext_status_'+res).val('0');
+    $('#Skill_div_'+res).addClass('d-none');
+    $('#Skill_div_'+res).removeClass('d-flex');
+    for(let i = 1; i <= countnumber; i++)
+    {
+        if($('#mytext_status_' + i).val() == '1')
+        {
+            skills.push(i);
+        }
+    }
+    var newvalue = Math.max(...skills);
+    if(newvalue == 1)
+    {
+        $('#Skill_div_'+newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_1" onclick="Addmore(this.id)">Add more</button>');
+    }
+    else
+    {
+        $('#Skill_div_'+newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_'+countnumber+'" onclick="Addmore(this.id)">Add more</button>');
+    }
+
+    if($('#mytext_'+res).val() == '')
+    {
+        $('#mytext_'+res).val('0'); 
+    }
+}
+
 
 $('input[name="details"]').click(function(){
     let ShareField = $('input[name="details"]:checked').val();
@@ -219,17 +265,4 @@ $('input[name="details"]').click(function(){
     $('#yesblock').hide();
     $('#noblock').hide();
   });
-  $(document).ready(function(){
-    $(".add_button").click(function(e){
-        e.preventDefault();
-        $("#field_wrapper").append('<div class="d-flex" id="field_wrapper"><input type="text" class="form-control" name="skills[]" id="skills" placeholder="Enter Your Skills"/><button type="button" class="btn btn-danger remove_button">Remove</button></div>');
-    });
-
-    $(document).on("click",".remove_button", function(e){
-        e.preventDefault();
-        let flex_item = $(this).parent().parent();
-        $(flex_item).remove();
-    });
-  });
-
   
