@@ -184,16 +184,20 @@ function Addmore(num)
     //  console.log(value);
     // limit
     var max_limit = 3;
-    var limit = $("#SkillCount").val();
+    var limit = $("#SkillClick").val();
     console.log(limit);
     
     // 
     if(value != '')
     {
         $('#add_btn_'+res).remove();
-        var newnumber = Number($('#SkillCount').val())+Number(1);
-        $('#SkillCount').val(newnumber);
+        
         if (limit < max_limit) {
+            var newnumber = Number($('#SkillCount').val())+Number(1);
+        $('#SkillCount').val(newnumber);
+        var neword = Number($('#SkillClick').val())+1;
+        $('#SkillClick').val(neword);
+        
             var newitem = '<div class="d-flex" id="Skill_div_'+newnumber+'"><input type="text" name="mytext[]" id="mytext_'+newnumber+'" placeholder="Add skills" class="form-control text-field"><button type="button" class="btn btn-danger" id="remove_btn_'+newnumber+'" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary add" id="add_btn_'+newnumber+'" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'+newnumber+'" name="mytext_status_'+newnumber+'" value="1"></div>';
         $(newitem).insertAfter('#Skill_div_'+res);
         }
@@ -238,7 +242,8 @@ function Remove(num)
     {
         $('#mytext_'+res).val('0'); 
     }
-   
+   var word = Number($('#SkillClick').val()) - Number(1);
+   $('#SkillClick').val(word);
     
 }
 
