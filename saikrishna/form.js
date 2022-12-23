@@ -1,4 +1,4 @@
-
+// radio value details
 function showdetails(radiovalue) {
     var clgdetails = document.getElementById("form-show");
     var presenteducation = document.getElementById("show-education");
@@ -13,7 +13,7 @@ function showdetails(radiovalue) {
 }
 
 
-
+// validation
 jQuery.validator.addMethod("alphabetsonly", function (value, element) {
 
     return this.optional(element) || /^[a-z\s]+$/i.test(value);
@@ -89,6 +89,16 @@ $().ready(function () {
             skill: {
                 required: true,
                 alphabetsonly: true,
+            },
+            mytext_1: {
+                required: true,
+                alphabetsonly: true,
+
+            },
+            mytext_a: {
+                required: true,
+                alphabetsonly: true,
+
             }
         },
 
@@ -137,6 +147,16 @@ $().ready(function () {
             skill: {
                 required: "Please Add Your Skills",
                 alphabetsonly: "Please Enter Alphabets Only",
+            },
+            mytext_1: {
+                required: "Please Add Your Skills",
+                alphabetsonly: "Please Enter Alphabets Only",
+
+            },
+            mytext_a: {
+                required: "Please Add Your Skills",
+                alphabetsonly: "Please Enter Alphabets Only",
+
             }
 
         },
@@ -150,11 +170,14 @@ $().ready(function () {
 
                     error.insertAfter('#btn-radio');
 
+
                 }
 
                 else {
 
                     error.insertAfter(element);
+
+
 
                 }
 
@@ -168,80 +191,62 @@ $().ready(function () {
 
 
 
-$(document).ready(function () {
-    var max_fields = 10; //maximum input boxes allowed
-    var wrapper = $(".input_fields_wrap"); //Fields wrapper
-    var add_button = $(".add_field_button"); //Add button ID
-
-    var x = 1; //initlal text box count
-    $(add_button).click(function (e) { //on add input button click
-        e.preventDefault();
-        if (x < max_fields) { //max input box allowed
-            x++; //text box increment
-            $(wrapper).append('<div class="show_hide"><input type="text" placeholder="skills" name="skills"/><btn  class="remove_field">Remove</btn></div>'); //add input box
-        }
-    });
-
-    $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
-        e.preventDefault(); $(this).parent('div').remove(); x--;
-    })
-});
-
-
-
-function Addmore(num)
-{
+function Addmore(num) {
     $('.error').remove();
     var str = num;
     var res = str.replace(/\D/g, "");
-    var value = $('#mytext_'+res).val();
+    var value = $('#mytext_' + res).val();
     //  console.log(value);
-    if(value != '')
-    {
-        $('#add_btn_'+res).remove();
-        var newnumber = Number($('#SkillCount').val())+Number(1);
+    if (value != '') {
+        $('#add_btn_' + res).remove();
+        var newnumber = Number($('#SkillCount').val()) + Number(1);
         $('#SkillCount').val(newnumber);
-        var newitem = '<div class="d-flex" id="Skill_div_'+newnumber+'"><input type="text" name="mytext_'+newnumber+'" id="mytext_'+newnumber+'" placeholder="Add skills" class="form-control"><button type="button" class="btn btn-danger" id="remove_btn_'+newnumber+'" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary add" id="add_btn_'+newnumber+'" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'+newnumber+'" name="mytext_status_'+newnumber+'" value="1"></div>';
-        $(newitem).insertAfter('#Skill_div_'+res);
+        var newitem = '<div class="d-flex" id="Skill_div_' + newnumber + '"><input type="text" name="mytext_a" id="mytext_'
+            + newnumber + '" placeholder="Add skills" class="form-control"><button type="button" class="btn btn-danger" id="remove_btn_'
+            + newnumber + '" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary add" id="add_btn_'
+            + newnumber + '" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'
+            + newnumber + '" name="mytext_status_'
+            + newnumber + '" value="1"></div>';
+        $(newitem).insertAfter('#Skill_div_' + res);
     }
-    else
-    {
-        $('<label class="error">Please fill the field</label>').insertAfter('#Skill_div_'+res);
+    else {
+        $('<label class="error">Please fill the field</label>').insertAfter('#Skill_div_' + res);
     }
 }
-function Remove(num)
-{
+function Remove(num) {
     $('.error').remove();
     var str = num;
     var res = str.replace(/\D/g, "");
     $('.add').remove();
     var countnumber = $('#SkillCount').val();
     const skills = [];
-    
-    $('#mytext_status_'+res).val('0');
-    $('#Skill_div_'+res).addClass('d-none');
-    $('#Skill_div_'+res).removeClass('d-flex');
-    for(let i = 1; i <= countnumber; i++)
-    {
-        if($('#mytext_status_' + i).val() == '1')
-        {
+
+    $('#mytext_status_' + res).val('0');
+    $('#Skill_div_' + res).addClass('d-none');
+    $('#Skill_div_' + res).removeClass('d-flex');
+    for (let i = 1; i <= countnumber; i++) {
+        if ($('#mytext_status_' + i).val() == '1') {
             skills.push(i);
         }
     }
     var newvalue = Math.max(...skills);
-    if(newvalue == 1)
-    {
-        $('#Skill_div_'+newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_1" onclick="Addmore(this.id)">Add more</button>');
+    if (newvalue == 1) {
+        $('#Skill_div_' + newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_1" onclick="Addmore(this.id)">Add more</button>');
     }
-    else
-    {
-        $('#Skill_div_'+newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_'+countnumber+'" onclick="Addmore(this.id)">Add more</button>');
+    else {
+        $('#Skill_div_' + newvalue).append('<button type="button" class="btn btn-primary add" id="add_btn_' + countnumber + '" onclick="Addmore(this.id)">Add more</button>');
     }
 
-    if($('#mytext_'+res).val() == '')
-    {
-        $('#mytext_'+res).val('0'); 
+    if ($('#mytext_' + res).val() == '') {
+        $('#mytext_' + res).val('0');
     }
-   
-    
+
+
 }
+
+
+
+
+
+
+
