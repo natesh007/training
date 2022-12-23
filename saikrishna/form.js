@@ -181,7 +181,13 @@ $().ready(function () {
 
                 }
 
+            },
+        submitHandler: function (form) {
+            var newfnction = newcheck();
+            if (newfnction != 1) {
+                alert('Form  has been Submitted');
             }
+        }
 
 
 
@@ -189,6 +195,18 @@ $().ready(function () {
 })
 
 
+function newcheck() {
+    $('.errors').remove();
+    var word = 0;
+    var count = $('#SkillCount').val();
+    for (let i = 1; i <= count; i++) {
+        if ($('#mytext_' + i).val() == '' && $('#mytext_status_' + i).val() == '1') {
+            $('<label class="errors">please fill the field</label>').insertAfter('#Skill_div_' + i);
+            word = 1;
+        }
+    }
+    return word;
+}
 
 
 function Addmore(num) {
@@ -196,18 +214,30 @@ function Addmore(num) {
     var str = num;
     var res = str.replace(/\D/g, "");
     var value = $('#mytext_' + res).val();
-    //  console.log(value);
+
+    var max_limit = 3;
+    var limit = $("#SkillClick").val();
+
     if (value != '') {
         $('#add_btn_' + res).remove();
-        var newnumber = Number($('#SkillCount').val()) + Number(1);
-        $('#SkillCount').val(newnumber);
-        var newitem = '<div class="d-flex" id="Skill_div_' + newnumber + '"><input type="text" name="mytext_a" id="mytext_'
-            + newnumber + '" placeholder="Add skills" class="form-control"><button type="button" class="btn btn-danger" id="remove_btn_'
-            + newnumber + '" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary add" id="add_btn_'
-            + newnumber + '" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'
-            + newnumber + '" name="mytext_status_'
-            + newnumber + '" value="1"></div>';
-        $(newitem).insertAfter('#Skill_div_' + res);
+
+        if (limit < max_limit) {
+
+            var newnumber = Number($('#SkillCount').val()) + Number(1);
+
+            $('#SkillCount').val(newnumber);
+            var newword = Number($('#SkillClick').val()) + 1;
+            $('#SkillClick').val(newword);
+
+            var newitem = '<div class="d-flex" id="Skill_div_' + newnumber + '"><input type="text" name="mytext_a" id="mytext_'
+                + newnumber + '" placeholder="Add skills" class="form-control"><button type="button" class="btn btn-danger" id="remove_btn_'
+                + newnumber + '" onclick="Remove(this.id)">Remove</button><button type="button" class="btn btn-primary add" id="add_btn_'
+                + newnumber + '" onclick="Addmore(this.id)">Add more</button> <input type="hidden" id="mytext_status_'
+                + newnumber + '" name="mytext_status_'
+                + newnumber + '" value="1"></div>';
+            $(newitem).insertAfter('#Skill_div_' + res);
+        }
+
     }
     else {
         $('<label class="error">Please fill the field</label>').insertAfter('#Skill_div_' + res);
